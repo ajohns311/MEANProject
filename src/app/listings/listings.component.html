@@ -1,0 +1,14 @@
+<app-listing-new (updateList)="getListings()"></app-listing-new>
+<div *ngIf="listings" >
+  <ul *ngFor="let listing of listings" class="bikeListing">
+    <button (click)="removeListing(listing)" class="btn btn-warning
+    float-right">Delete</button>
+    <button [routerLink]="['/edit', listing._id]" class="btn btn-success float-right">Edit</button>
+    <li><h4>{{ listing.title }}</h4></li>
+    <li><p>Description: {{ listing.description }}</p></li>
+    <li>Price: {{ listing.price }}</li>
+    <li>Location: {{ listing.location }}</li>
+    <li><img src="{{ listing.image }}" alt="bicycle"></li>
+  </ul>
+</div>
+
