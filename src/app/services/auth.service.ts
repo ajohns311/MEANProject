@@ -24,7 +24,9 @@ export class AuthService {
     }));
   }
   register(user: User): Observable<User> {
-    return this.http.post<User>(`${this.base}/register`, user);
+    return this.http.post<User>(`${this.base}/register`, user).pipe(tap(() => {
+      this.isAuthed$.next(true);
+    }));
   }
   logout(): Observable<boolean> {
     return this.http.delete<boolean>(`${this.base}/logout`).pipe(tap(() => {

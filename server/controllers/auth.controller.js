@@ -7,15 +7,13 @@ module.exports = {
 
     User.findOne({ email })
       .then(user => {
-
-
         return User.validatePassword(password, user.password)
           .then(valid => {
             if (!valid) { throw new Error(); };
               completeLogin(request, response, user);
           });
       })
-      .catch(() => {
+      .catch(error => {
         response.status(Http.Unauthorized).json('Invalid Credentials');
       });
 

@@ -10,7 +10,7 @@ import { User } from '../../models';
 })
 export class LoginComponent {
 
-  errors: string[] = [];
+  loginError: string;
 
   user: User = new User ();
 
@@ -23,12 +23,12 @@ export class LoginComponent {
   userLogin(user: User) {
     this.auth.login(user).subscribe(
       loggedUser => {
-      console.log('loggin in', loggedUser);
-      this.router.navigate(['dashboard']);
-    },
+        console.log('loggin in', loggedUser);
+        this.router.navigate(['dashboard']);
+      },
       error => {
-        console.log(error);
-        this.errors = error;
+        console.log('error', error);
+        this.loginError = error;
       }
   );
 
